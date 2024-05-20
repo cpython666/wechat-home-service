@@ -45,7 +45,7 @@ MIDDLEWARE = [
 	"django.middleware.security.SecurityMiddleware",
 	"django.contrib.sessions.middleware.SessionMiddleware",
 	"django.middleware.common.CommonMiddleware",
-	"django.middleware.csrf.CsrfViewMiddleware",
+	# "django.middleware.csrf.CsrfViewMiddleware",
 	"django.contrib.auth.middleware.AuthenticationMiddleware",
 	"django.contrib.messages.middleware.MessageMiddleware",
 	"django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -156,18 +156,30 @@ import time
 
 SIMPLEUI_CONFIG = {
 	"system_keep": True,
-	'menu_display': ['数据大屏', '服务人员信息审核', "顾客信息发布", '数据统计分析', '纠纷审核与处理', '家政服务预约',
+	'menu_display': ['数据大屏', '服务人员信息管理', "顾客信息发布", '数据统计分析', '纠纷审核与处理', '家政服务预约',
 	                 '认证和授权'],
 	# 开启排序和过滤功能, 不填此字段为默认排序和全部显示, 空列表[] 为全部不显示.
 	"dynamic": True,  # 设置是否开启动态菜单, 默认为False. 如果开启, 则会在每次用户登陆时动态展示菜单内容
 	"menus": [
 		{
-			"name": "服务人员信息审核",
+			"name": "服务人员信息管理",
 			"icon": "fa fa-file",  # 二级菜单
 			"models": [
 				{
-					"name": "服务人员信息审批",
+					"name": "服务人员信息建档",
 					"icon": "far fa-surprise",
+					"url": "/home/workercreat/",
+				},
+				{
+					"name": "服务人员信息更改",
+					"icon": "far fa-surprise",
+					"url": '/admin/home/workerprofile/'
+				},
+				{
+					"name": "服务人员信息注销",
+					"icon": "far fa-surprise",
+					"url": '/admin/home/workerprofile/'
+					
 				},
 			],
 		},

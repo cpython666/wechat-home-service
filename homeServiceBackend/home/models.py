@@ -162,7 +162,7 @@ class Review(models.Model):
 
 
 class Booking(models.Model):
-	customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookings', verbose_name='顾客')
+	customer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='预约的客户')
 	service = models.ForeignKey(Service, on_delete=models.CASCADE, verbose_name='服务')
 	booking_date = models.DateField(verbose_name='预约日期')
 	booking_time = models.TimeField(verbose_name='预约时间')
