@@ -76,6 +76,9 @@ class WorkerProfile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='worker_profile')
 	services = models.ManyToManyField(Service, verbose_name='提供的服务')
 	rating = models.DecimalField(max_digits=2, decimal_places=1, default=0.0, verbose_name='评分')
+	info = models.TextField(default='暂无介绍', verbose_name='介绍')
+	qualification_document = models.ImageField(upload_to='qualifications/', verbose_name='资质文件', null=True,
+	                                           blank=True)
 	
 	def __str__(self):
 		return f'{self.user}'

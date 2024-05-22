@@ -2,7 +2,7 @@ from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
 from rest_framework.response import Response
 
-from .models import User, CustomerProfile, WorkerProfile, Service, Order, Review
+from .models import User, CustomerProfile, WorkerProfile, Service, Order, Review, Booking, Schedule
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -20,16 +20,7 @@ class UserSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = User
 		fields = ['id', 'username', 'password', 'phone_number', 'gender', 'user_type']
-
-
-class CustomerProfileSerializer(serializers.ModelSerializer):
-	user = serializers.PrimaryKeyRelatedField(
-		queryset=User.objects.filter(user_type='customer').order_by('id'),
-	)
-	
-	class Meta:
-		model = CustomerProfile
-		fields = '__all__'
+		depth = 3
 
 
 class WorkerProfileSerializer(serializers.ModelSerializer):
@@ -40,8 +31,9 @@ class WorkerProfileSerializer(serializers.ModelSerializer):
 	
 	class Meta:
 		model = WorkerProfile
-		fields = ['user', 'services', 'rating']
+		fields = '__all__'
 		read_only_fields = ['rating']
+		depth = 3
 	
 	def create(self, validated_data):
 		username = validated_data.pop('username')
@@ -73,6 +65,21 @@ class ServiceSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Service
 		fields = '__all__'
+		depth = 3
+
+
+class CustomerProfileSerializer(serializers.ModelSerializer):
+	user = UserSerializer()  # 嵌套UserSerializer
+	preferred_services = ServiceSerializer(many=True)  # 嵌套ServiceSerializer
+	
+	# user = serializers.PrimaryKeyRelatedField(
+	# 	queryset=User.objects.filter(user_type='customer').order_by('id'),
+	# )
+	
+	class Meta:
+		model = CustomerProfile
+		fields = '__all__'
+		depth = 3
 
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -80,9 +87,27 @@ class OrderSerializer(serializers.ModelSerializer):
 		model = Order
 		fields = ['customer', 'worker', 'service', 'creation_time', 'start_time', 'completion_time', 'duration',
 		          'status']
+		depth = 3
 
 
 class ReviewSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Review
-		fields = ['order', 'rating', 'content']
+		fields = '__all__'
+		depth = 3
+
+
+class BookingSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Booking
+		fields = '__all__'
+		depth = 3
+
+
+class ScheduleSerializer(serializers.ModelSerializer):
+	worker = WorkerProfileSerializer()  # 嵌套UserSerializer
+	
+	class Meta:
+		model = Schedule
+		fields = '__all__'
+		depth = 3

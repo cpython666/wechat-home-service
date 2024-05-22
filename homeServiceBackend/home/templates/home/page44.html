@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>顾客数据统计</title>
+    <title>服务纠纷数据统计</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container mt-5">
-    <h2>顾客数据统计</h2>
+    <h2>服务纠纷数据统计</h2>
     <div class="row">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    总顾客数
+                    总纠纷次数
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title" id="total-customers">120</h5>
+                    <h5 class="card-title" id="total-disputes">75</h5>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    性别分布
+                    纠纷类型分布
                 </div>
                 <div class="card-body">
-                    <canvas id="gender-chart"></canvas>
+                    <canvas id="dispute-type-chart"></canvas>
                 </div>
             </div>
         </div>
@@ -38,24 +38,25 @@
 <script>
     $(document).ready(function () {
         // 假设这是从后端获取的数据
-        const totalCustomers = 20;
-        const genderData = [
-            {label: '男', count: 5},
-            {label: '女', count: 10},
-            {label: '私密', count: 5}
+        const totalDisputes = 75;
+        const disputeTypeData = [
+            {label: '服务质量', count: 30},
+            {label: '时间安排', count: 20},
+            {label: '费用问题', count: 15},
+            {label: '其他', count: 10}
         ];
 
-        $('#total-customers').text(totalCustomers);
+        $('#total-disputes').text(totalDisputes);
 
-        // Gender Distribution Chart
-        const ctx = document.getElementById('gender-chart').getContext('2d');
+        // Dispute Type Distribution Chart
+        const ctx = document.getElementById('dispute-type-chart').getContext('2d');
         new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: genderData.map(item => item.label),
+                labels: disputeTypeData.map(item => item.label),
                 datasets: [{
-                    data: genderData.map(item => item.count),
-                    backgroundColor: ['#007bff', '#dc3545', '#ffc107']
+                    data: disputeTypeData.map(item => item.count),
+                    backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545']
                 }]
             },
             options: {
@@ -66,7 +67,7 @@
                 },
                 title: {
                     display: true,
-                    text: '顾客性别分布'
+                    text: '纠纷类型分布'
                 }
             }
         });

@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>顾客数据统计</title>
+    <title>服务记录数据统计</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container mt-5">
-    <h2>顾客数据统计</h2>
+    <h2>服务记录数据统计</h2>
     <div class="row">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    总顾客数
+                    总服务次数
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title" id="total-customers">120</h5>
+                    <h5 class="card-title" id="total-services">450</h5>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    性别分布
+                    服务类型分布
                 </div>
                 <div class="card-body">
-                    <canvas id="gender-chart"></canvas>
+                    <canvas id="service-type-chart"></canvas>
                 </div>
             </div>
         </div>
@@ -38,24 +38,24 @@
 <script>
     $(document).ready(function () {
         // 假设这是从后端获取的数据
-        const totalCustomers = 20;
-        const genderData = [
-            {label: '男', count: 5},
-            {label: '女', count: 10},
-            {label: '私密', count: 5}
+        const totalServices = 17;
+        const serviceTypeData = [
+            {label: '清洁', count: 200},
+            {label: '烹饪', count: 150},
+            {label: '看护', count: 100}
         ];
 
-        $('#total-customers').text(totalCustomers);
+        $('#total-services').text(totalServices);
 
-        // Gender Distribution Chart
-        const ctx = document.getElementById('gender-chart').getContext('2d');
+        // Service Type Distribution Chart
+        const ctx = document.getElementById('service-type-chart').getContext('2d');
         new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: genderData.map(item => item.label),
+                labels: serviceTypeData.map(item => item.label),
                 datasets: [{
-                    data: genderData.map(item => item.count),
-                    backgroundColor: ['#007bff', '#dc3545', '#ffc107']
+                    data: serviceTypeData.map(item => item.count),
+                    backgroundColor: ['#007bff', '#28a745', '#ffc107']
                 }]
             },
             options: {
@@ -66,7 +66,7 @@
                 },
                 title: {
                     display: true,
-                    text: '顾客性别分布'
+                    text: '服务类型分布'
                 }
             }
         });

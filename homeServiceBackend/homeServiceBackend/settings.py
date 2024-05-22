@@ -156,7 +156,7 @@ import time
 
 SIMPLEUI_CONFIG = {
 	"system_keep": True,
-	'menu_display': ['数据大屏', '服务人员信息管理', "顾客信息发布", '数据统计分析', '纠纷审核与处理', '家政服务预约',
+	'menu_display': ['数据大屏', '服务人员信息管理', '数据统计分析', '纠纷审核与处理', '家政服务预约',
 	                 '认证和授权'],
 	# 开启排序和过滤功能, 不填此字段为默认排序和全部显示, 空列表[] 为全部不显示.
 	"dynamic": True,  # 设置是否开启动态菜单, 默认为False. 如果开启, 则会在每次用户登陆时动态展示菜单内容
@@ -199,12 +199,12 @@ SIMPLEUI_CONFIG = {
 				},
 				{
 					"name": "服务记录数据统计",
-					"url": "https://www.wezoz.com",
+					"url": "/home/page43/",
 					"icon": "fab fa-github",
 				},
 				{
 					"name": "服务纠纷数据统计",
-					"url": "https://www.wezoz.com",
+					"url": "/home/page44/",
 					"icon": "fab fa-github",
 				},
 			],

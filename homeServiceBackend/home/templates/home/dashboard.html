@@ -8,75 +8,75 @@
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.0.0/dist/echarts.min.js"></script>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row bg-dark text-white p-3">
-            <h2 class="text-center">服务预约系统数据分析</h2>
+<div class="container-fluid">
+    <div class="row bg-dark text-white p-3">
+        <h2 class="text-center">服务预约系统数据分析</h2>
+    </div>
+    <div class="row text-center mt-3">
+        <div class="col-md-3">
+            <h4>服务人员数量</h4>
+            <p id="worker-count">25</p>
         </div>
-        <div class="row text-center mt-3">
-            <div class="col-md-3">
-                <h4>服务人员数量</h4>
-                <p id="worker-count">153</p>
-            </div>
-            <div class="col-md-3">
-                <h4>顾客数量</h4>
-                <p id="customer-count">203</p>
-            </div>
-            <div class="col-md-3">
-                <h4>今日订单数量</h4>
-                <p id="today-orders-count">35</p>
-            </div>
-            <div class="col-md-3">
-                <h4>进行中订单数量</h4>
-                <p id="active-orders-count">6</p>
-            </div>
+        <div class="col-md-3">
+            <h4>顾客数量</h4>
+            <p id="customer-count">20</p>
         </div>
-        <div class="row mt-4">
-            <div class="col-md-6">
-                <div id="service-type-chart" style="height: 400px;"></div>
-            </div>
-            <div class="col-md-6">
-                <div id="orders-trend-chart" style="height: 400px;"></div>
-            </div>
+        <div class="col-md-3">
+            <h4>今日订单数量</h4>
+            <p id="today-orders-count">35</p>
+        </div>
+        <div class="col-md-3">
+            <h4>进行中订单数量</h4>
+            <p id="active-orders-count">6</p>
         </div>
     </div>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div id="service-type-chart" style="height: 400px;"></div>
+        </div>
+        <div class="col-md-6">
+            <div id="orders-trend-chart" style="height: 400px;"></div>
+        </div>
+    </div>
+</div>
 
-    <script>
-        var serviceTypeChart = echarts.init(document.getElementById('service-type-chart'));
-        var ordersTrendChart = echarts.init(document.getElementById('orders-trend-chart'));
+<script>
+    var serviceTypeChart = echarts.init(document.getElementById('service-type-chart'));
+    var ordersTrendChart = echarts.init(document.getElementById('orders-trend-chart'));
 
-        // 示例数据和配置
-        serviceTypeChart.setOption({
-            title: { text: '服务类型统计' },
-            tooltip: {},
-            xAxis: {
-                data: ["清洁", "烹饪", "看护"]
-            },
-            yAxis: {},
-            series: [{
-                name: '数量',
-                type: 'bar',
-                data: [5, 20, 36]
-            }]
-        });
+    // 示例数据和配置
+    serviceTypeChart.setOption({
+        title: {text: '服务类型统计'},
+        tooltip: {},
+        xAxis: {
+            data: ["清洁", "烹饪", "看护"]
+        },
+        yAxis: {},
+        series: [{
+            name: '数量',
+            type: 'bar',
+            data: [5, 10, 10]
+        }]
+    });
 
-        ordersTrendChart.setOption({
-            title: { text: '近七天订单量' },
-            tooltip: {},
-            xAxis: {
-                type: 'category',
-                data: ['6天前', '5天前', '4天前', '3天前', '2天前', '1天前', '今天']
-            },
-            yAxis: {
-                type: 'value'
-            },
-            series: [{
-                name: '订单量',
-                type: 'line',
-                data: [5, 15, 20, 25, 20, 15, 30]
-            }]
-        });
-    </script>
+    ordersTrendChart.setOption({
+        title: {text: '近七天订单量'},
+        tooltip: {},
+        xAxis: {
+            type: 'category',
+            data: ['6天前', '5天前', '4天前', '3天前', '2天前', '1天前', '今天']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            name: '订单量',
+            type: 'line',
+            data: [5, 15, 20, 25, 20, 15, 30]
+        }]
+    });
+</script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
