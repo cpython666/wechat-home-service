@@ -84,6 +84,22 @@ DATABASES = {
 		"PASSWORD": "1234",
 		"HOST": "localhost",  # 'HOST': '8.130.67.132',
 		"PORT": 3306,
+	},
+	'db2': {
+		'ENGINE': 'djongo',
+		'ENFORCE_SCHEMA': True,
+		'NAME': 'homeservice',
+		'HOST': 'localhost',
+		'PORT': 27017,
+		# 'USER': 'db-username',
+		# 'PASSWORD': 'password',
+		# 'AUTH_SOURCE': 'db-name',
+		'AUTH_MECHANISM': 'SCRAM-SHA-1',
+		'REPLICASET': 'replicaset',
+		'SSL': 'ssl',
+		'SSL_CERTFILE': 'ssl_certfile',
+		'SSL_CA_CERTS': 'ssl_ca_certs',
+		'READ_PREFERENCE': 'read_preference'
 	}
 }
 
@@ -111,11 +127,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # 多语言配置更改语言为中文
 LANGUAGE_CODE = "zh-hans"
 # 时区
+# TIME_ZONE = 'UTC'
 TIME_ZONE = "Asia/Shanghai"
 
-USE_I18N = True
+USE_I18N = False
+# USE_I18N = True
 
-USE_TZ = True
+# USE_TZ = True
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -156,7 +175,7 @@ import time
 
 SIMPLEUI_CONFIG = {
 	"system_keep": True,
-	'menu_display': ['数据大屏', '服务人员信息管理', '数据统计分析', '纠纷审核与处理', '家政服务预约',
+	'menu_display': ['数据大屏', '服务人员信息管理', '纠纷审核与处理', '数据统计分析', '家政服务预约',
 	                 '认证和授权'],
 	# 开启排序和过滤功能, 不填此字段为默认排序和全部显示, 空列表[] 为全部不显示.
 	"dynamic": True,  # 设置是否开启动态菜单, 默认为False. 如果开启, 则会在每次用户登陆时动态展示菜单内容
@@ -215,8 +234,9 @@ SIMPLEUI_CONFIG = {
 			"models": [
 				{
 					"name": "服务排班发布",
-					"url": "https://www.baidu.com",
+					"url": "/admin/home/review/",
 					"icon": "fab fa-github",
+					
 				},
 			],
 		},
@@ -227,12 +247,20 @@ SIMPLEUI_CONFIG = {
 				{
 					"name": "纠纷审核",
 					"icon": "far fa-surprise",
-				},
-				{
-					"name": "纠纷处理",
-					"icon": "far fa-surprise",
+					'url': '/admin/home/review/'
 				},
 			],
 		},
 	],
 }
+
+# from django.utils import timezone
+# from datetime import timedelta
+# from home.models import WorkerProfile  # 确保使用正确的模型路径
+#
+# today = timezone.now().date()
+# new_workers_last_7_days = [
+#     WorkerProfile.objects.filter(created_at__date=today - timedelta(days=i)).count()
+#     for i in range(7)
+# ]
+# print(new_workers_last_7_days)

@@ -5,6 +5,7 @@ from django.db import models
 class User(AbstractUser):
 	address = models.CharField(max_length=255, blank=True, null=True, verbose_name='地址')
 	phone_number = models.CharField(max_length=15, blank=True, null=True, verbose_name='电话号码')
+	realname = models.CharField(max_length=15, blank=True, null=True, verbose_name='真实姓名')
 	GENDER_CHOICES = (('private', '私密'), ('male', '男'), ('female', '女'))
 	gender = models.CharField(max_length=12, choices=GENDER_CHOICES, default='private', verbose_name='性别')
 	USER_TYPE_CHOICES = (('customer', '顾客'), ('admin', '管理员'), ('worker', '工作人员'))
@@ -79,9 +80,10 @@ class WorkerProfile(models.Model):
 	info = models.TextField(default='暂无介绍', verbose_name='介绍')
 	qualification_document = models.ImageField(upload_to='qualifications/', verbose_name='资质文件', null=True,
 	                                           blank=True)
+	created_at = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')  # 添加创建时间字段
 	
 	def __str__(self):
-		return f'{self.user}'
+		return f'{self.user},{self.created_at}'
 	
 	class Meta:
 		verbose_name = "工作人员档案"
@@ -107,28 +109,33 @@ class Schedule(models.Model):
 
 
 class Order(models.Model):
+	order_id = models.BigIntegerField(null=True, blank=True)
 	customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='customer_orders', verbose_name='顾客')
 	worker = models.ForeignKey(WorkerProfile, on_delete=models.CASCADE, null=True, related_name='worker_orders',
 	                           verbose_name='工作人员')
 	service = models.ForeignKey(Service, on_delete=models.CASCADE, verbose_name='服务类型')
 	creation_time = models.DateTimeField(auto_now_add=True, verbose_name='订单创建时间')
-	start_time = models.DateTimeField(verbose_name='订单开始时间')
+	start_time = models.DateTimeField(null=True, blank=True, verbose_name='订单开始时间')
 	completion_time = models.DateTimeField(null=True, blank=True, verbose_name='订单完成时间')
-	duration = models.IntegerField(help_text="服务时长", verbose_name='服务持续时长')
+	duration = models.IntegerField(null=True, blank=True, help_text="服务时长", verbose_name='服务持续时长')
 	preferred_date = models.DateField(null=True, blank=True, verbose_name='首选日期')
-	preferred_time = models.TimeField(null=True, blank=True, verbose_name='首选时间')
+	preferred_starttime = models.TimeField(null=True, blank=True, verbose_name='首选时间')
+	preferred_duration = models.IntegerField(null=True, blank=True, verbose_name='预期服务时长')
+	preferred_endtime = models.TimeField(null=True, blank=True, verbose_name='首选时间')
 	start_photo = models.ImageField(upload_to='order_photos/start/', null=True, blank=True, verbose_name='服务开始照片')
 	end_photo = models.ImageField(upload_to='order_photos/end/', null=True, blank=True, verbose_name='服务结束照片')
 	STATUS_CHOICES = (
-		('pending', '待确认'),
-		('confirmed', '已确认'),
-		('worker_start', '服务人员开始服务'),
-		('start', '顾客确认开始服务'),
-		('in_progress', '进行中'),
-		('completed', '已完成'),
-		('cancelled', '已取消'),
+		('待确认', '待确认'),
+		('已确认', '已确认'),
+		('服务人员开始服务', '服务人员开始服务'),
+		('顾客确认开始服务', '顾客确认开始服务'),
+		('进行中', '进行中'),
+		('已完成', '已完成'),
+		('已评价', '已评价'),
+		('已取消', '已取消'),
 	)
-	status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending', verbose_name='订单状态')
+	cost = models.IntegerField(null=True, blank=True, verbose_name='服务持续时长')
+	status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='待确认', verbose_name='订单状态')
 	feedback = models.TextField(blank=True, null=True, verbose_name='订单反馈')
 	order_rating = models.DecimalField(max_digits=2, decimal_places=1, verbose_name='评分', null=True, blank=True)
 	
@@ -149,6 +156,12 @@ class Review(models.Model):
 	satisfaction = models.DecimalField(max_digits=2, decimal_places=1, null=True, blank=True, verbose_name='满意度')
 	content = models.TextField(blank=True, null=True, verbose_name='投诉与纠纷内容')
 	resolution = models.TextField(blank=True, null=True, verbose_name='处理结果')
+	STATUS_CHOICES = (
+		('待处理', '待处理'),
+		('已处理', '已处理'),
+		('已评分', '已评分'),
+	)
+	status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='待处理', verbose_name='纠纷投诉处理状态')
 	
 	def save(self, *args, **kwargs):
 		super().save(*args, **kwargs)
@@ -161,7 +174,7 @@ class Review(models.Model):
 		]
 	
 	def __str__(self):
-		return f'订单：{self.order.id}，投诉：{self.content[:20]}'
+		return f'投诉纠纷：{self.order.id}，投诉：{self.content[:20]}'
 
 
 class Booking(models.Model):
@@ -179,3 +192,13 @@ class Booking(models.Model):
 	
 	def __str__(self):
 		return f'顾客：{self.customer.username}，服务：{self.service.name}，状态：{self.status}'
+
+# from django.utils import timezone
+# from datetime import timedelta
+# from home.models import WorkerProfile  # 确保使用正确的模型路径
+#
+# today = timezone.now().date()
+# for i in range(7):
+#     date = today - timedelta(days=i)
+#     count = WorkerProfile.objects.filter(user__date_joined__date=date).count()
+#     print(f"{date}: {count}")

@@ -16,14 +16,14 @@
                     总纠纷次数
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title" id="total-disputes">75</h5>
+                    <h5 class="card-title" id="total-disputes">Loading...</h5>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    纠纷类型分布
+                    纠纷原因预览
                 </div>
                 <div class="card-body">
                     <canvas id="dispute-type-chart"></canvas>
@@ -37,38 +37,39 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     $(document).ready(function () {
-        // 假设这是从后端获取的数据
-        const totalDisputes = 75;
-        const disputeTypeData = [
-            {label: '服务质量', count: 30},
-            {label: '时间安排', count: 20},
-            {label: '费用问题', count: 15},
-            {label: '其他', count: 10}
-        ];
+        $.ajax({
+            url: '/api/dispute-statistics/',
+            method: 'GET',
+            success: function (data) {
+                // 更新总纠纷次数
+                $('#total-disputes').text(data.total_disputes);
 
-        $('#total-disputes').text(totalDisputes);
-
-        // Dispute Type Distribution Chart
-        const ctx = document.getElementById('dispute-type-chart').getContext('2d');
-        new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: disputeTypeData.map(item => item.label),
-                datasets: [{
-                    data: disputeTypeData.map(item => item.count),
-                    backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545']
-                }]
+                // 纠纷类型分布图表
+                const ctx = document.getElementById('dispute-type-chart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: data.dispute_data.map(item => item.label),
+                        datasets: [{
+                            data: data.dispute_data.map(item => item.count),
+                            backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: '纠纷类型分布'
+                        }
+                    }
+                });
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                legend: {
-                    position: 'top',
-                },
-                title: {
-                    display: true,
-                    text: '纠纷类型分布'
-                }
+            error: function (xhr, status, error) {
+                console.error('Error fetching data:', error);
             }
         });
     });

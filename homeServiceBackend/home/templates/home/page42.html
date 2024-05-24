@@ -16,7 +16,7 @@
                     总顾客数
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title" id="total-customers">120</h5>
+                    <h5 class="card-title" id="total-customers">Loading...</h5>
                 </div>
             </div>
         </div>
@@ -37,37 +37,39 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     $(document).ready(function () {
-        // 假设这是从后端获取的数据
-        const totalCustomers = 20;
-        const genderData = [
-            {label: '男', count: 5},
-            {label: '女', count: 10},
-            {label: '私密', count: 5}
-        ];
+        $.ajax({
+            url: '/api/customer-statistics/',
+            method: 'GET',
+            success: function (data) {
+                // 更新总顾客数
+                $('#total-customers').text(data.total_customers);
 
-        $('#total-customers').text(totalCustomers);
-
-        // Gender Distribution Chart
-        const ctx = document.getElementById('gender-chart').getContext('2d');
-        new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: genderData.map(item => item.label),
-                datasets: [{
-                    data: genderData.map(item => item.count),
-                    backgroundColor: ['#007bff', '#dc3545', '#ffc107']
-                }]
+                // 性别分布图表
+                const ctx = document.getElementById('gender-chart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: data.gender_data.map(item => item.label),
+                        datasets: [{
+                            data: data.gender_data.map(item => item.count),
+                            backgroundColor: ['#007bff', '#dc3545', '#ffc107']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: '顾客性别分布'
+                        }
+                    }
+                });
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                legend: {
-                    position: 'top',
-                },
-                title: {
-                    display: true,
-                    text: '顾客性别分布'
-                }
+            error: function (xhr, status, error) {
+                console.error('Error fetching data:', error);
             }
         });
     });

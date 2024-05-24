@@ -19,7 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
 	
 	class Meta:
 		model = User
-		fields = ['id', 'username', 'password', 'phone_number', 'gender', 'user_type']
+		fields = '__all__'
 		depth = 3
 
 
@@ -85,8 +85,7 @@ class CustomerProfileSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Order
-		fields = ['customer', 'worker', 'service', 'creation_time', 'start_time', 'completion_time', 'duration',
-		          'status']
+		fields = '__all__'
 		depth = 3
 
 

@@ -16,7 +16,7 @@
                     总服务次数
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title" id="total-services">450</h5>
+                    <h5 class="card-title" id="total-services">Loading...</h5>
                 </div>
             </div>
         </div>
@@ -37,37 +37,39 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     $(document).ready(function () {
-        // 假设这是从后端获取的数据
-        const totalServices = 17;
-        const serviceTypeData = [
-            {label: '清洁', count: 200},
-            {label: '烹饪', count: 150},
-            {label: '看护', count: 100}
-        ];
+        $.ajax({
+            url: '/api/service-statistics/',
+            method: 'GET',
+            success: function (data) {
+                // 更新总服务次数
+                $('#total-services').text(data.total_services);
 
-        $('#total-services').text(totalServices);
-
-        // Service Type Distribution Chart
-        const ctx = document.getElementById('service-type-chart').getContext('2d');
-        new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: serviceTypeData.map(item => item.label),
-                datasets: [{
-                    data: serviceTypeData.map(item => item.count),
-                    backgroundColor: ['#007bff', '#28a745', '#ffc107']
-                }]
+                // 服务类型分布图表
+                const ctx = document.getElementById('service-type-chart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: data.service_data.map(item => item.label),
+                        datasets: [{
+                            data: data.service_data.map(item => item.count),
+                            backgroundColor: ['#007bff', '#28a745', '#ffc107']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: '服务类型分布'
+                        }
+                    }
+                });
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                legend: {
-                    position: 'top',
-                },
-                title: {
-                    display: true,
-                    text: '服务类型分布'
-                }
+            error: function (xhr, status, error) {
+                console.error('Error fetching data:', error);
             }
         });
     });

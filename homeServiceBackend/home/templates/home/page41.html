@@ -31,44 +31,85 @@
         </div>
     </div>
 </div>
-
 <script>
-    var serviceTypeChart = echarts.init(document.getElementById('service-type-chart'));
-    var ordersTrendChart = echarts.init(document.getElementById('orders-trend-chart'));
+    var serviceTypeChart;
+    var ordersTrendChart;
 
-    // 示例数据和配置
-    serviceTypeChart.setOption({
-        title: {text: '服务类型统计'},
-        tooltip: {},
-        xAxis: {
-            data: ["清洁", "烹饪", "看护"]
-        },
-        yAxis: {},
-        series: [{
-            name: '数量',
-            type: 'bar',
-            data: [5, 10, 10]
-        }]
+    document.addEventListener('DOMContentLoaded', function () {
+        // 初始化ECharts图表
+        serviceTypeChart = echarts.init(document.getElementById('service-type-chart'));
+        ordersTrendChart = echarts.init(document.getElementById('orders-trend-chart'));
+
+        // 配置图表的初始状态
+        initCharts();
+        fetchDataAndUpdateUI();
     });
 
-    ordersTrendChart.setOption({
-        title: {text: '近七天新增人员'},
-        tooltip: {},
-        xAxis: {
-            type: 'category',
-            data: ['6天前', '5天前', '4天前', '3天前', '2天前', '1天前', '今天']
-        },
-        yAxis: {
-            type: 'value'
-        },
-        series: [{
-            name: '订单量',
-            type: 'line',
-            data: [2, 1, 2, 1, 3, 2, 2]
-        }]
-    });
+    function initCharts() {
+        serviceTypeChart.setOption({
+            title: {text: '服务类型统计'},
+            tooltip: {},
+            xAxis: {
+                data: ["清洁", "烹饪", "看护"]
+            },
+            yAxis: {},
+            series: [{
+                name: '数量',
+                type: 'bar',
+                data: [5, 10, 10] // 示例数据，实际数据将从后端更新
+            }]
+        });
+
+        ordersTrendChart.setOption({
+            title: {text: '近七天新增人员'},
+            tooltip: {},
+            xAxis: {
+                type: 'category',
+                data: ['6天前', '5天前', '4天前', '3天前', '2天前', '1天前', '今天']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                name: '订单量',
+                type: 'line',
+                data: [2, 1, 2, 1, 3, 2, 2] // 示例数据，实际数据将从后端更新
+            }]
+        });
+    }
+
+    function fetchDataAndUpdateUI() {
+        fetch('/worker_data_statistics/')
+            .then(response => response.json())
+            .then(data => {
+                // 更新页面元素
+                document.getElementById('worker-count').textContent = data.worker_count;
+                document.getElementById('customer-count').textContent = data.active_workers_today;
+
+                // 更新服务类型统计图
+                updateServiceTypeChart(data.services_data);
+
+                // 更新近七天新增人员图
+                updateNewWorkersTrendChart(data.new_workers_last_7_days);
+            })
+            .catch(error => console.error('Error fetching data: ', error));
+    }
+
+    function updateServiceTypeChart(servicesData) {
+        var categories = Object.keys(servicesData);
+        var values = Object.values(servicesData);
+        serviceTypeChart.setOption({
+            xAxis: {data: categories},
+            series: [{data: values}]
+        });
+    }
+
+    function updateNewWorkersTrendChart(newWorkersData) {
+        ordersTrendChart.setOption({
+            series: [{data: newWorkersData.reverse()}]
+        });
+    }
 </script>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
