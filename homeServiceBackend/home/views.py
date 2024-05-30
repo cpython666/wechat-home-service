@@ -331,7 +331,7 @@ def dashboard_data(request):
 	today = timezone.now().date()
 	
 	# 服务人员数量
-	worker_count = User.objects.filter(user_type='worker').count()
+	worker_count = WorkerProfile.objects.all().count()
 	
 	# 顾客数量
 	customer_count = User.objects.filter(user_type='customer').count()
