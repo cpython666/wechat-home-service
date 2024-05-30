@@ -1,0 +1,12 @@
+<view class="container">
+  <block wx:for="{{serviceData}}" wx:key="unique">
+    <view class="service-item" bindtap="goToAddOrder" data-id="{{item.id}}">
+      <image class="service-image" src="{{item.image}}" mode="aspectFit"></image>
+      <view class="service-info">
+        <text class="service-title">名称：{{item.name}}，分类：{{item.category}}</text>
+        <text class="service-description">{{item.description}}</text>
+        <text class="service-price">价格：￥{{item.price_per_hour}}</text>
+      </view>
+    </view>
+  </block>
+</view>

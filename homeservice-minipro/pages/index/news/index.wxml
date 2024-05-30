@@ -1,0 +1,13 @@
+<view class="container">
+    <view class="page-header">
+        <text>最新动态</text>
+    </view>
+    <view class="news-list">
+        <block wx:for="{{newsList}}" wx:key="index">
+            <view class="news-item">
+                <view class="news-title">{{item.title}}</view>
+                <view class="news-date">{{item.date}}</view>
+            </view>
+        </block>
+    </view>
+</view>

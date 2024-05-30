@@ -1,0 +1,25 @@
+/* pages/feedback/feedback.wxss */
+.container {
+  padding: 20px;
+}
+.service-info text {
+  display: block;
+  margin-bottom: 5px;
+}
+.rating-section,
+.comment-section {
+  margin-top: 20px;
+}
+.picker {
+  padding: 10px;
+  background-color: #f3f3f3;
+  border-radius: 5px;
+}
+button {
+  margin-top: 20px;
+  background-color: #007aff;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+}

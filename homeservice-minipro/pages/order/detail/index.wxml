@@ -1,0 +1,113 @@
+<view class="container">
+  <text class="header">订单详情</text>
+
+  <view class="order-detail">
+    <text class="detail-label">订单编号:</text>
+    <text class="detail-value">{{order.order_id}}</text>
+  </view>
+  <view class="order-detail">
+    <text class="detail-label">客户姓名:</text>
+    <text class="detail-value">{{order.customer_name}}</text>
+  </view>
+  <view class="order-detail">
+    <text class="detail-label">服务类型:</text>
+    <text class="detail-value">{{order.service_type}}</text>
+  </view>
+  <view class="order-detail">
+    <text class="detail-label">服务日期:</text>
+    <text class="detail-value">{{order.service_date}}</text>
+  </view>
+  <view class="order-detail">
+    <text class="detail-label">订单状态:</text>
+    <text class="detail-value">{{order.status}}</text>
+  </view>
+  <view class="order-detail">
+    <text class="detail-label">服务人员姓名:</text>
+    <text class="detail-value">{{order.worker_name}}</text>
+  </view>
+  <view class="order-detail">
+    <text class="detail-label">服务开始时间:</text>
+    <text class="detail-value">{{order.service_start_time}}</text>
+  </view>
+  <view class="order-detail">
+    <text class="detail-label">服务结束时间:</text>
+    <text class="detail-value">{{order.service_end_time}}</text>
+  </view>
+  <view class="order-detail">
+    <text class="detail-label">服务花费:</text>
+    <text class="detail-value">{{order.service_cost}}</text>
+  </view>
+  <view class="order-detail">
+    <text class="detail-label">备注:</text>
+    <text class="detail-value">{{order.remark}}</text>
+  </view>
+
+  <view class="order-detail" wx:if="{{order.service_start_image}}">
+    <view>服务开始照片：</view>
+    <image class="service-image" src="{{order.service_start_image}}" mode="aspectFit"></image>
+  </view>
+  <view class="order-detail" wx:if="{{order.service_end_image}}">
+    <view>服务结束照片：</view>
+    <image class="service-image" src="{{order.service_end_image}}" mode="aspectFit"></image>
+  </view>
+
+  <view wx:if="{{order.status == '待确认'}}">
+    <button class="btn" bindtap="confirmOrder">确认订单并支付</button>
+    <button class="btn" bindtap="cancelOrder">取消订单</button>
+  </view>
+  <view wx:if="{{order.status == '已取消'}}">
+    <button class="btn" bindtap="newOrder">新建订单</button>
+    <button class="btn" bindtap="deleteOrder">删除订单</button>
+  </view>
+  <view wx:if="{{order.status === '已确认'}}">
+    <button class="btn" disabled="true">等待服务开始</button>
+    <view>
+      注意：距离服务开始30分钟内不能取消订单，需要联系服务部
+    </view>
+    <button class="btn" bindtap="cancelOrder">取消订单</button>
+  </view>
+  <view wx:if="{{order.status === '服务人员开始服务'}}">
+    <button class="btn" bindtap="confirmServiceStart">确认服务开始</button>
+  </view>
+  <view wx:if="{{order.status === '顾客确认开始服务'}}">
+    <button class="btn" disabled="true">等待服务结束</button>
+  </view>
+
+  <view wx:if="{{order.status === '已完成'}}">
+    <textarea class="textarea" placeholder="输入评价" value="{{feedback}}" bindinput="onFeedbackInput"></textarea>
+    <button class="btn" bindtap="saveFeedback">发布评价</button>
+  </view>
+  <view wx:if="{{order.status === '已评价' && !order.review}}">
+    <text class="detail-label">评价:</text>
+    <text class="detail-value">{{order.feedback}}</text>
+    <view>
+      服务完成,后续投诉与反馈？
+    </view>
+    <button class="btn" bindtap="toReview">投诉与反馈</button>
+  </view>
+  <view wx:if="{{order.review}}">
+    <view>
+      投诉内容：{{order.review}}
+    </view>
+    <view>
+      处理状态：{{review.status}}
+    </view>
+    <view wx:if="{{review.status === '已处理'}}">
+      处理结果：{{review.resolution}}
+      <!-- 添加一个打分输入框和按钮，为这次纠纷处理打分，满意度 -->
+      <view>
+        <text class="detail-label">打分:</text>
+        <input type="number" class="score-input" placeholder="输入0-5" value="{{score}}" bindinput="onScoreInput" min="0" max="5" />
+        <button class="btn" bindtap="submitScore">提交打分</button>
+      </view>
+    </view>
+    <view wx:if="{{review.status === '已评分'}}">
+      处理结果：{{review.resolution}}
+      <!-- 添加一个打分输入框和按钮，为这次纠纷处理打分，满意度 -->
+      <view>
+        <text class="detail-label">打分:</text>
+        <view>{{review.satisfaction}}</view>
+      </view>
+    </view>
+  </view>
+</view>

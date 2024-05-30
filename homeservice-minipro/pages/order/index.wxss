@@ -1,0 +1,20 @@
+.container {
+  padding: 20px;
+}
+
+.header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.order-item {
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+}
+
+.order-info {
+  margin-bottom: 5px;
+}

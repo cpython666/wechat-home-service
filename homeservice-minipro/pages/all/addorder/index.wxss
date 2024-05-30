@@ -1,0 +1,37 @@
+.container {
+  padding: 20px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.picker, .textarea {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+}
+
+.amount {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1cbbb4;
+  margin-top: 10px;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #1cbbb4;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  margin-top: 20px;
+}

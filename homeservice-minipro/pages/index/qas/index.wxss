@@ -1,0 +1,51 @@
+.container {
+  padding: 20px;
+}
+
+.header text {
+  display: block;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.faq-list {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.faq-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee; /* 添加边框以区分每个问题 */
+  cursor: pointer; /* 提示用户可以点击 */
+  display: flex;
+  /* align-items: center; */
+  flex-direction: column;
+}
+
+.faq-question {
+  font-size: 18px;
+  color: #007aff; /* 问题颜色 */
+  flex: 1; /* 使问题占据大部分空间，并靠左排列 */
+}
+
+.faq-answer {
+  font-size: 16px;
+  color: #666;
+  margin-top: 5px;
+  padding-left: 20px; /* 答案靠左布局 */
+}
+
+.icon {
+  margin-right: 10px; /* 图标与文本之间的间距 */
+}
+
+.contact-btn {
+  background-color: #007aff;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%; /* 按钮宽度调整为与容器一致 */
+  box-sizing: border-box; /* 确保宽度包含padding */
+}

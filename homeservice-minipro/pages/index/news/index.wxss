@@ -1,0 +1,32 @@
+.container {
+  padding: 20px;
+}
+
+.page-header text {
+  display: block;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.news-list {
+  margin-top: 10px;
+}
+
+.news-item {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.news-title {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.news-date {
+  font-size: 14px;
+  color: #666;
+}

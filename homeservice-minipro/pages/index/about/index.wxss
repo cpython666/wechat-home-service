@@ -1,0 +1,22 @@
+.container {
+  padding: 20px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section-header text {
+  display: block;
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.section-body text {
+  display: block;
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 5px;
+}

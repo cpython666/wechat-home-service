@@ -1,0 +1,55 @@
+<view class="main">
+<view class="up">
+  <image mode="widthFix" src="../../images/home1.png" />
+</view>
+<view class="header">
+        <text>欢迎来到家政服务预约平台</text>
+    </view>
+<view class="down"> 
+		<view class="menu card-project">
+			<view bindtap="goToNews" class="item">
+				<view class="item-inner">
+					<view class="img shadow">
+						<image src="../../images/menu/notice.png" />
+					</view>
+					<view class="title">最新动态</view>
+				</view>
+			</view>
+			<view bindtap="goToInfo" class="item">
+				<view class="item-inner">
+					<view class="img shadow">
+						<image src="../../images/menu/kemu.png" />
+					</view>
+					<view class="title">服务介绍</view>
+				</view>
+			</view>
+			<view bindtap="goToQas" class="item">
+				<view class="item-inner">
+					<view class="img shadow">
+						<image src="../../images/menu/enroll.png" />
+					</view>
+					<view class="title">常见问题</view>
+				</view>
+			</view> 
+			<view bindtap="goToAbout" class="item">
+				<view class="item-inner">
+					<view class="img shadow">
+						<image src="../../images/menu/coach.png" />
+					</view>
+					<view class="title">关于我们</view>
+				</view>
+			</view>
+		</view>
+  </view>
+  <view class="container">
+    <view class="service-categories">
+        <button class="category" bindtap="selectCategory" data-category="cleaning">清洁服务</button>
+        <button class="category" bindtap="selectCategory" data-category="babysitting">保姆服务</button>
+        <button class="category" bindtap="selectCategory" data-category="elderly_care">养老护理</button>
+    </view>
+    <view class="selected-service">
+        <text>{{selectedServiceDescription}}</text>
+    </view>
+</view>
+
+</view>

@@ -1,0 +1,16 @@
+<view class="container">
+  <text class="header">我的订单</text>
+
+  <!-- 循环显示所有订单 -->
+  <block wx:for="{{orders}}" wx:key="order_id">
+    <view class="order-item" bindtap="goToOrderDetail" data-id="{{item.order_id}}">
+      <view class="order-info">订单编号: {{item.order_id}}</view>
+      <view class="order-info">服务类型: {{item.service_type}}</view>
+      <view class="order-info">服务时间: {{item.service_date}}</view>
+      <view class="order-info">订单状态: {{item.status}}</view>
+    </view>
+  </block>
+  <view wx:if="{{orders.length==0}}">
+    暂无订单
+  </view>
+</view>

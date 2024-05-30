@@ -1,0 +1,53 @@
+<view class="container">
+  <text class="header">管理订单</text>
+
+  <!-- 循环显示所有订单 -->
+  <block wx:for="{{orders}}" wx:key="order_id">
+    <view class="order-item">
+      <view class="order-field">
+        <text class="label">订单编号:</text>
+        <input class="input" value="{{item.order_id}}" data-id="{{item.order_id}}" bindinput="onInputChange" data-field="order_id"/>
+      </view>
+      <view class="order-field">
+        <text class="label">客户姓名:</text>
+        <input class="input" value="{{item.customer_name}}" data-id="{{item.order_id}}" bindinput="onInputChange" data-field="customer_name"/>
+      </view>
+      <view class="order-field">
+        <text class="label">服务类型:</text>
+        <input class="input" value="{{item.service_type}}" data-id="{{item.order_id}}" bindinput="onInputChange" data-field="service_type"/>
+      </view>
+      <view class="order-field">
+        <text class="label">服务时间:</text>
+        <input class="input" value="{{item.service_time}}" data-id="{{item.order_id}}" bindinput="onInputChange" data-field="service_time"/>
+      </view>
+      <view class="order-field">
+        <text class="label">服务人员姓名:</text>
+        <input class="input" value="{{item.worker_name}}" data-id="{{item.order_id}}" bindinput="onInputChange" data-field="worker_name"/>
+      </view>
+      <view class="order-field">
+        <text class="label">服务开始时间:</text>
+        <picker mode="time" value="{{item.service_start_time}}" data-id="{{item.order_id}}" bindchange="onStartTimeChange">
+          <view class="picker">{{item.service_start_time}}</view>
+        </picker>
+      </view>
+      <view class="order-field">
+        <text class="label">服务结束时间:</text>
+        <picker mode="time" value="{{item.service_end_time}}" data-id="{{item.order_id}}" bindchange="onEndTimeChange">
+          <view class="picker">{{item.service_end_time}}</view>
+        </picker>
+      </view>
+      <view class="order-field">
+        <text class="label">服务花费:</text>
+        <input class="input" value="{{item.service_cost}}" data-id="{{item.order_id}}" bindinput="onInputChange" data-field="service_cost"/>
+      </view>
+      <view class="order-field">
+        <text class="label">订单状态:</text>
+        <picker mode="selector" range="{{statusOptions}}" value="{{item.statusIndex}}" data-id="{{item.order_id}}" bindchange="onStatusChange">
+          <view class="picker">{{item.status}}</view>
+        </picker>
+      </view>
+    </view>
+  </block>
+
+  <button class="btn" bindtap="saveOrders">保存订单</button>
+</view>

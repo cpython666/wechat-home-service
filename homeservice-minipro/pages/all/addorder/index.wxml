@@ -1,0 +1,58 @@
+<view class="container">
+  <view class="section">
+    <text class="label">选择服务:</text>
+    <picker mode="selector" range="{{services}}" range-key="name" bindchange="onServiceChange">
+      <view class="picker">
+        {{selectedService ? selectedService.name : '请选择服务'}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="section">
+    <text class="label">选择日期:</text>
+    <picker mode="date" bindchange="onDateChange">
+      <view class="picker">
+        {{selectedDate ? selectedDate : '请选择日期'}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="section">
+    <text class="label">选择开始时间:</text>
+    <picker mode="time" bindchange="onStartTimeChange">
+      <view class="picker">
+        {{selectedStartTime ? selectedStartTime : '请选择开始时间'}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="section">
+    <text class="label">选择持续时间（小时）:</text>
+    <picker mode="selector" range="{{hours}}" bindchange="onDurationChange">
+      <view class="picker">
+        {{selectedDuration ? selectedDuration : '请选择持续时间'}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="section">
+    <text class="label">选择服务人员:</text>
+    <picker mode="selector" range="{{availableWorkers}}" range-key="name" bindchange="onWorkerChange">
+      <view class="picker">
+        {{selectedWorker ? selectedWorker.name : '请选择服务人员'}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="section">
+    <text class="label">填写其他信息:</text>
+    <textarea class="textarea" placeholder="输入备注" bindinput="onRemarkChange"></textarea>
+  </view>
+
+  <view class="section">
+    <text class="label">总金额:</text>
+    <text class="amount">{{totalAmount ? totalAmount : '待计算'}}</text>
+  </view>
+
+  <button class="btn" bindtap="createOrder">创建订单</button>
+</view>

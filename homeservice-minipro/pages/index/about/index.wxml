@@ -1,0 +1,20 @@
+<!-- 这里是关于我们页面 -->
+<view class="container">
+    <view class="section">
+        <view class="section-header">
+            <text>公司介绍</text>
+        </view>
+        <view class="section-body">
+            <text>我们是一家提供全方位家政服务的公司，致力于为每一位顾客带来最专业、最便捷的服务体验。</text>
+        </view>
+    </view>
+    <view class="section">
+        <view class="section-header">
+            <text>联系方式</text>
+        </view>
+        <view class="section-body">
+            <text>电话：123-456-7890</text>
+            <text>地址：湖北省武汉市民族大道</text>
+        </view>
+    </view>
+</view>

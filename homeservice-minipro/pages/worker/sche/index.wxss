@@ -1,0 +1,66 @@
+.container {
+  padding: 2px;
+}
+
+.calendar {
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.days, .dates {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.day, .date {
+  width: 14.28%;
+  text-align: center;
+}
+
+.date {
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: orange;
+}
+
+.time-settings {
+  margin-top: 20px;
+}
+
+.time-slot, .add-time-slot {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* button {
+  margin-top: 10px;
+} */
+.deletebutton{
+  /* width: 20px; */
+  font-size: 15px;
+}
+.timeinput{
+  width: 50px;
+}
+.schedule-item{
+border: black solid 1px;
+padding: 2px 5px;
+margin: 3px;
+border-radius: 5px;
+}
+.addtime{
+  width: 150px;
+  font-size: medium;
+  padding: 2px 3px;
+  height: 40px;
+}

@@ -1,0 +1,48 @@
+<view class="container">
+  <text class="header">订单详情</text>
+
+  <view class="order-detail">
+    <text class="detail-label">订单编号:</text>
+    <text class="detail-value">{{order.order_id}}</text>
+  </view>
+  <view class="order-detail">
+    <text class="detail-label">客户姓名:</text>
+    <text class="detail-value">{{order.customer_name}}</text>
+  </view>
+  <view class="order-detail">
+    <text class="detail-label">服务类型:</text>
+    <text class="detail-value">{{order.service_type}}</text>
+  </view>
+  <view class="order-detail">
+    <text class="detail-label">服务时间:</text>
+    <text class="detail-value">{{order.service_date}}</text>
+  </view>
+  <view class="order-detail">
+    <text class="detail-label">订单状态:</text>
+    <text class="detail-value">{{order.status}}</text>
+  </view>
+  <view class="order-detail" wx:if="{{order.service_start_image}}">
+    <view>服务开始照片：</view>
+    <image class="service-image" src="{{order.service_start_image}}" mode="aspectFit"></image>
+  </view>
+  <view class="order-detail" wx:if="{{order.service_end_image}}">
+    <view>服务结束照片：</view>
+    <image class="service-image" src="{{order.service_end_image}}" mode="aspectFit"></image>
+  </view>
+  <!-- 操作按钮 -->
+  <view class="buttons">
+    <button class="btn" wx:if="{{order.status === '待确认'}}" bindtap="confirmOrder">确认订单</button>
+    <view wx:if="{{order.status === '已确认'}}">
+      <!-- 选择图片上传的按钮 -->
+      <button class="btn" bindtap="chooseStartImage">上传图片并开始服务</button>
+    </view>
+    <button class="btn" wx:if="{{order.status === '服务人员开始服务'}}" disabled="true" bindtap="confirmServiceStart">等待顾客确认服务开始</button>
+    <button class="btn" wx:if="{{order.status === '顾客确认开始服务'}}" bindtap="complateService">上传完成照片并完成服务</button>
+    <button class="btn" wx:if="{{order.status === '已完成'}}" disabled="true">等待评价</button>
+    <view wx:if="{{order.status === '已评价'}}">
+      <view>评价：</view>
+      <view>{{order.feedback}}</view>
+    </view>
+    <button class="btn" wx:if="{{order.status === '已评价'}}" disabled="true">已评价</button>
+  </view>
+</view>

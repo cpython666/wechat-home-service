@@ -1,0 +1,6 @@
+<view class="container">
+  <text class="header">评价服务</text>
+
+  <textarea class="review-input" placeholder="请输入评价内容" bindinput="onInput"></textarea>
+  <button class="btn" bindtap="submitReview">提交评价</button>
+</view>

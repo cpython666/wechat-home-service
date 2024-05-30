@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="calendar">
+    <picker mode="date" value="{{currentDate}}" bindchange="onDateChange">
+      <view class="picker">{{currentDate}}</view>
+    </picker>
+  </view>
+  <view class="schedule-settings">
+    <!-- 循环显示所有排班日期及其对应的时间段 -->
+    <block wx:for="{{schedules}}" wx:key="date">
+      <view class="schedule-item">
+        <text>{{item.date}}</text>
+        <view wx:for="{{item.timeSlots}}" wx:key="id" wx:for-item="slot">
+          <view class="time-slot">
+            <input class="timeinput" type="time" value="{{slot.start}}" data-date="{{item.date}}" data-id="{{slot.id}}" bindinput="onStartTimeInput"/>
+            <text>~</text>
+            <input class="timeinput" type="time" value="{{slot.end}}" data-date="{{item.date}}" data-id="{{slot.id}}" bindinput="onEndTimeInput"/>
+            <switch checked="{{slot.active}}" bindchange="toggleSlotActive" data-date="{{item.date}}" data-id="{{slot.id}}"/>
+            <button class="deletebutton" bindtap="removeTimeSlot" data-date="{{item.date}}" data-id="{{slot.id}}">删除</button>
+          </view>
+        </view>
+        <button bindtap="addTimeSlot" data-date="{{item.date}}">添加时段</button>
+      </view>
+    </block>
+  </view>
+  <button bindtap="saveSchedule">保存时间设置</button>
+</view>

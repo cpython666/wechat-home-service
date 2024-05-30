@@ -1,0 +1,1 @@
+<button class="btn" bindtap="goToOrderManage">管理订单</button>

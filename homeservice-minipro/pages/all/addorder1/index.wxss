@@ -1,0 +1,25 @@
+.container {
+  padding: 20px;
+}
+
+.picker {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #f3f3f3;
+  border-radius: 5px;
+}
+
+.input {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.submit-btn {
+  margin: 20px 0;
+  background-color: #007aff;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}

@@ -1,0 +1,30 @@
+.container {
+  padding: 20px;
+}
+
+.header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.order-item {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.order-info {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.btn-detail {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #1cbbb4;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+}

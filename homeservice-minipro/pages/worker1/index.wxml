@@ -1,0 +1,17 @@
+<!-- pages/schedule/schedule.wxml -->
+<view class="schedule-container">
+    <view class="calendar-view">
+        <calendar bindchange="onDateChange" />
+    </view>
+    <view class="schedule-list">
+        <block wx:for="{{schedules}}" wx:key="unique">
+            <view class="schedule-item">
+                <text>{{item.date}} {{item.startTime}} - {{item.endTime}}</text>
+                <text>{{item.serviceType}}</text>
+                <button class="edit-btn" data-id="{{item.id}}" bindtap="editSchedule">编辑</button>
+                <button class="delete-btn" data-id="{{item.id}}" bindtap="deleteSchedule">删除</button>
+            </view>
+        </block>
+    </view>
+    <button class="add-btn" bindtap="addSchedule">添加排班</button>
+</view>

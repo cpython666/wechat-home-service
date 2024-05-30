@@ -1,0 +1,78 @@
+{
+  "pages": [
+
+    "pages/index/index",
+    "pages/manage/index",
+    "pages/manage/manageorder/index",
+    "pages/date/index",
+    "pages/date/myorder/index",
+    "pages/date/myorder/review1/index",
+    "pages/worker/index",
+    "pages/worker/order/index",
+    "pages/worker/detail/index",
+    "pages/worker/sche/index",
+
+    "pages/worker1/index",
+    "pages/order/feedback/index",
+    "pages/order/detail/index",
+    "pages/order/doorder/index",
+    "pages/order/review1/index",
+    "pages/index/news/index",
+    "pages/index/about/index",
+    "pages/index/qas/index",
+    "pages/all/index",
+    "pages/all/addorder/index",
+    "pages/all/addorder1/index",
+    "pages/order/index",
+    "pages/my/index",
+    "pages/my/collect/index",
+    "pages/my/login/index",
+    "pages/my/profile/index",
+    "pages/my/worker/index",
+    "pages/logs/index"
+  ],
+	"window": {
+		"backgroundColor": "#007BFF",
+    "backgroundTextStyle": "dark",
+
+		"navigationBarBackgroundColor": "#007BFF",
+		"navigationBarTitleText": "家政上门预约小程序",
+		"navigationBarTextStyle": "white"
+	},
+  "tabBar": {
+		"custom": false,
+		"backgroundColor": "#FFFFFF",
+		"color": "#999999",
+		"selectedColor": "#5372FF",
+		"list":[{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "images/tabbar/home.png",
+			"selectedIconPath": "images/tabbar/home_cur.png"
+    },
+    {
+      "pagePath": "pages/all/index",
+      "text": "全部服务",
+      "iconPath": "images/tabbar/all.png",
+			"selectedIconPath": "images/tabbar/all_cur.png"
+    },
+    {
+      "pagePath": "pages/order/index",
+      "text": "我的订单",
+      "iconPath": "images/tabbar/date.png",
+      "selectedIconPath": "images/tabbar/date_cur.png"
+    },
+    {
+      "pagePath": "pages/my/index",
+      "text": "我的",
+      "iconPath": "images/tabbar/my.png",
+			"selectedIconPath": "images/tabbar/my_cur.png"
+    }
+  ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}

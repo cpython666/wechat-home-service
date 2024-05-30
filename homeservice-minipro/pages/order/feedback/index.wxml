@@ -1,0 +1,20 @@
+<!-- pages/feedback/feedback.wxml -->
+<view class="container">
+    <view class="service-info">
+      <text class="service-title">订单号：{{ service.id }}</text>        
+      <text class="service-title">服务名称：{{ service.name }}</text>
+        <text class="service-detail">服务详情：{{ service.detail }}</text>
+    </view>
+    <view class="rating-section">
+        <text>评分：</text>
+        <picker mode="selector" range="{{ ratings }}" bindchange="onRatingChange">
+            <view class="picker">
+                {{ selectedRating }} 星
+            </view>
+        </picker>
+    </view>
+    <view class="comment-section">
+        <textarea placeholder="请输入您的评价内容" auto-height bindinput="onCommentInput"></textarea>
+    </view>
+    <button bindtap="submitFeedback">提交评价</button>
+</view>

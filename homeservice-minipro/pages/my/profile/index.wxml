@@ -1,0 +1,38 @@
+<view class="container">
+    <form bindsubmit="formSubmit">
+        <view class="weui-cells__title">我的信息</view>
+        <view class="weui-cells weui-cells_form">
+          <view class="weui-cell">
+                <view class="weui-cell__hd"><label class="weui-label">昵称</label></view>
+                <view class="weui-cell__bd">
+                    <view>{{username}}</view>
+                </view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__hd"><label class="weui-label">真实姓名</label></view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" name="name" value="{{name}}" placeholder="请输入姓名" />
+                </view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__hd"><label class="weui-label">邮箱</label></view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" name="email" value="{{email}}" placeholder="请输入邮箱" />
+                </view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__hd"><label class="weui-label">联系电话</label></view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" name="phone" value="{{phone}}" placeholder="请输入电话" />
+                </view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__hd"><label class="weui-label">地址</label></view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" name="address" value="{{address}}" placeholder="请输入住址" />
+                </view>
+            </view>
+        </view>
+        <button formType="submit" class="weui-btn weui-btn_primary">保存</button>
+    </form>
+</view>

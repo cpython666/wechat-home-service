@@ -1,0 +1,32 @@
+<view class="container">
+  <text class="header">订单详情</text>
+
+  <view class="order-detail">
+    <text class="detail-label">订单编号:</text>
+    <text class="detail-value">{{order.order_id}}</text>
+  </view>
+  <view class="order-detail">
+    <text class="detail-label">客户姓名:</text>
+    <text class="detail-value">{{order.customer_name}}</text>
+  </view>
+  <view class="order-detail">
+    <text class="detail-label">服务类型:</text>
+    <text class="detail-value">{{order.service_type}}</text>
+  </view>
+  <view class="order-detail">
+    <text class="detail-label">服务时间:</text>
+    <text class="detail-value">{{order.service_time}}</text>
+  </view>
+  <view class="order-detail">
+    <text class="detail-label">订单状态:</text>
+    <text class="detail-value">{{order.status}}</text>
+  </view>
+  <!-- 操作按钮 -->
+  <view class="buttons">
+    <button class="btn" wx:if="{{order.status === '待确认'}}" bindtap="confirmOrder">确认订单</button>
+    <button class="btn" wx:if="{{order.status === '已确认'}}" bindtap="startService">开始服务</button>
+    <button class="btn" wx:if="{{order.status === '服务人员开始服务'}}" bindtap="confirmServiceStart">确认服务开始</button>
+    <button class="btn" wx:if="{{order.status === '顾客确认开始服务'}}" bindtap="endService">结束服务</button>
+    <button class="btn" wx:if="{{order.status === '已完成'}}" bindtap="reviewService">评价服务</button>
+  </view>
+</view>

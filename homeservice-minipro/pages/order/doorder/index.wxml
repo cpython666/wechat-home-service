@@ -1,0 +1,18 @@
+<!-- pages/orderDetail/orderDetail.wxml -->
+<view class="container">
+    <view class="order-header">
+        <text>订单号：{{ order.id }}</text>
+        <text>服务类型：{{ order.serviceType }}</text>
+        <text>服务状态：{{ order.status }}</text>
+    </view>
+    <view class="progress-section">
+        <text>服务进度：</text>
+        <progress percent="{{ order.progress }}" show-info stroke-width="6"></progress>
+    </view>
+    <view class="feedback-section">
+        <text>服务评价：</text>
+        <textarea class="feedback-input" placeholder="请输入您的服务评价" bindinput="onFeedbackInput"></textarea>
+        <button bindtap="submitFeedback">验收服务</button>
+        <!-- <button bindtap="submitFeedback">服务异常</button> -->
+    </view>
+</view>

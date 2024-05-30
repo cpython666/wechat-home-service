@@ -1,0 +1,19 @@
+<view class="container">
+    <view class="header">
+        <text>常见问题</text>
+    </view>
+    <view class="faq-list">
+        <block wx:for="{{faqs}}" wx:key="id">
+            <view class="faq-item" bindtap="toggleFaq" data-index="{{index}}">
+            <view>
+              <text class="icon">▶</text>
+                <text class="faq-question">{{item.question}}</text>
+            </view>
+
+                <view class="faq-answer" wx:if="{{item.open}}">
+                    {{item.answer}}
+                </view>
+            </view>
+        </block>
+    </view>
+</view>

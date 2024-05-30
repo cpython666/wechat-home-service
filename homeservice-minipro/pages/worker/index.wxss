@@ -1,0 +1,33 @@
+.container {
+  padding: 20px;
+}
+
+.header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.user-info {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.info-label {
+  width: 80px;
+  font-weight: bold;
+}
+
+.info-value {
+  flex: 1;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #1cbbb4;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+}

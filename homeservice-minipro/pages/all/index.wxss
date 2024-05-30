@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+image{
+  height: 50px;
+}
+.service-image {
+  width: 200px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.service-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: black solid 1px;
+}
+
+.service-title {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.service-description {
+  text-align: center;
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.service-price {
+  font-size: 18px;
+  color: #e64340;
+}
+.service-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

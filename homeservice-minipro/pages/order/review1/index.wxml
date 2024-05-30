@@ -1,0 +1,13 @@
+<view class="container">
+  <text class="header">投诉与反馈</text>
+  <view class="review-detail">
+    <text class="detail-label">订单编号:</text>
+    <text class="detail-value">{{order.order_id}}</text>
+  </view>
+  <view class="review-detail">
+    <text class="detail-label">客户姓名:</text>
+    <text class="detail-value">{{order.customer_name}}</text>
+  </view>
+  <textarea class="textarea" placeholder="输入投诉与反馈" bindinput="onReviewInput"></textarea>
+  <button class="btn" bindtap="submitReview">提交投诉与反馈</button>
+</view>

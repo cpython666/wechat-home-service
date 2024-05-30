@@ -1,0 +1,17 @@
+<view class="container">
+    <picker mode="selector" range="{{services}}" range-key="name" bindchange="onServiceChange">
+        <view class="picker">选择服务：{{selectedService.name}}</view>
+    </picker>
+    <picker mode="date" start="{{dateStart}}" end="{{dateEnd}}" bindchange="onDateChange">
+        <view class="picker">选择服务人员：{{selectedDate}}</view>
+    </picker>
+    <picker mode="date" start="{{dateStart}}" end="{{dateEnd}}" bindchange="onDateChange">
+        <view class="picker">选择日期：{{selectedDate}}</view>
+    </picker>
+    <picker mode="time" bindchange="onTimeChange">
+        <view class="picker">选择时间：{{selectedTime}}</view>
+    </picker>
+    <input class="input" placeholder="您的姓名" bindinput="onNameInput"/>
+    <input class="input" placeholder="您的联系电话" bindinput="onPhoneInput"/>
+    <button class="submit-btn" bindtap="submitBooking">提交预约</button>
+</view>

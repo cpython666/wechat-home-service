@@ -1,0 +1,23 @@
+<view class="container">
+  <text class="header">当前登录的用户: {{worker.username}}</text>
+
+  <view class="user-info">
+    <text class="info-label">真实姓名:</text>
+    <text class="info-value">{{worker.name}}</text>
+  </view>
+  <view class="user-info">
+    <text class="info-label">电话:</text>
+    <text class="info-value">{{worker.phone}}</text>
+  </view>
+  <view class="user-info">
+    <text class="info-label">性别:</text>
+    <text class="info-value">{{worker.gender}}</text>
+  </view>
+  <view class="user-info">
+    <text class="info-label">用户类型:</text>
+    <text class="info-value">{{worker.userType}}</text>
+  </view>
+
+  <button class="btn" bindtap="goToSchedule">我的排班</button>
+  <button class="btn" bindtap="goToOrder">我的订单</button>
+</view>
